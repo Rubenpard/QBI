@@ -1,0 +1,56 @@
+<div class="widget-container">
+  <label for="data-select">Select Data Type:</label>
+  <select id="data-select" [(ngModel)]="selectedType" (change)="onChangeDataType($event)">
+    <option value="product">Products</option>
+    <option value="company">Companies</option>
+  </select>
+
+  <!-- Contador Widget -->
+  <div class="counter-widget">
+    <h3>Total {{ selectedType === 'product' ? 'Price of Products' : 'Number of Companies' }}</h3>
+    <div class="counter">
+      <span>{{ totalValue | number:'1.0-0' }}</span>
+    </div>
+  </div>
+  
+  <!-- Doughnut Chart Widget visible only for Admin -->
+  <div *ngIf="isAdmin">
+    <canvas #doughnutCanvas width="400px" height="400px"></canvas>
+  </div>
+</div>
+
+<div class="dashboard-container">
+  <div class="section" *ngIf="selectedType === 'product'">
+    <h3>Productos</h3>
+    <table *ngIf="products.length > 0">
+      <thead>
+        <tr>
+          <th *ngFor="let column of getVisibleColumns('product')">{{ column }}</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let product of products">
+          <td *ngFor="let column of getVisibleColumns('product')">{{ product[column] }}</td>
+        </tr>
+      </tbody>
+    </table>
+    <p *ngIf="products.length === 0">No hay productos disponibles.</p>
+  </div>
+
+  <div class="section" *ngIf="selectedType === 'company'">
+    <h3>Compañías</h3>
+    <table *ngIf="companies.length > 0">
+      <thead>
+        <tr>
+          <th *ngFor="let column of getVisibleColumns('company')">{{ column }}</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let company of companies">
+          <td *ngFor="let column of getVisibleColumns('company')">{{ company[column] }}</td>
+        </tr>
+      </tbody>
+    </table>
+    <p *ngIf="companies.length === 0">No hay compañías disponibles.</p>
+  </div>
+</div>

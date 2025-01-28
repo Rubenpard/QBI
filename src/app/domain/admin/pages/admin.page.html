@@ -1,0 +1,31 @@
+<div class="admin-container">
+  <h2>Columnas disponibles</h2>
+
+  <div class="columns-section">
+    <h3>Productos</h3>
+    <div class="checkbox-group">
+      <label *ngFor="let column of allProductColumns">
+        <input
+          type="checkbox"
+          [checked]="productColumns.includes(column)"
+          (change)="onColumnChange('product', column, $event)"
+        />
+        {{ column }}
+      </label>
+    </div>
+  </div>
+
+  <div class="columns-section">
+    <h3>Compañías</h3>
+    <div class="checkbox-group">
+      <label *ngFor="let column of allCompanyColumns">
+        <input
+          type="checkbox"
+          [checked]="companyColumns.includes(column)"
+          (change)="onColumnChange('company', column, $event)"
+        />
+        {{ column }}
+      </label>
+    </div>
+  </div>
+</div>

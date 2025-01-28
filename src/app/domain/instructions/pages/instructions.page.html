@@ -1,0 +1,117 @@
+<div class="container">
+    <h1>Instrucciones generales</h1>
+    <ul>
+        <li>Los datos de "products" se obtendrán del endpoint: <a href="https://6787e2bbc4a42c9161089f94.mockapi.io/api/v1/product" target="_blank">https://6787e2bbc4a42c9161089f94.mockapi.io/api/v1/product</a></li>
+        <li>Los datos de "companies" se obtendrán del endpoint: <a href="https://6787e2bbc4a42c9161089f94.mockapi.io/api/v1/company" target="_blank">https://6787e2bbc4a42c9161089f94.mockapi.io/api/v1/company</a></li>
+        <li>Todos los datos se obtendrán a través de API (usando los anteriores endpoints) y se guardarán de forma persistente en local, haciendo que si recargues la página ya tengas los datos cargados y no haga falta llamar de nuevo</li>
+        <li>Los datos de configuración de la página de admin también se guardarán en local</li>
+        <li>Los datos de "products" y "companies" se borrarán al hacer logout, pero los del admin no lo harán, persistiendo entre sesiones de usuarios</li>
+        <li>Los valores de precios se tendrán que ver con la divisa correspondiente (por defecto EUR)</li>
+        <li>No se podrá usar ninguna librería externa</li>
+        <li>Se tendrá que usar Angular 19</li>
+        <li>Se podrán cambiar tanto los estilos como las variables ya creadas</li>
+    </ul>
+</div>
+<div class="container">
+    <h1>Ejercicios</h1>
+    <div class="step">
+        <figure>
+            <span>1</span>
+        </figure>
+        <p>Solo se podrá al portal habiendose logado previamente con un usuario (Guest, User o Admin), si no se ha logado el acceso deberá estar restringido</p>
+    </div>
+    <div class="step">
+        <figure>
+            <span>2</span>
+        </figure>
+        <p>Crear página "Not found" para cuando acceda a una url no existente</p>
+        <p class="notes">Se dará libertad para diseñar esta página como se crea conveniente, se valorará creatividad</p>
+    </div>
+    <div class="step">
+        <figure>
+            <span>3</span>
+        </figure>
+        <p>Crear página "Forbidden" para cuando el usuario intente acceder a una página existente pero que no tenga permisos para ello</p>
+        <p class="notes">Se dará libertad para diseñar esta página como se crea conveniente, se valorará creatividad</p>
+    </div>
+    <div class="step">
+        <figure>
+            <span>4</span>
+        </figure>
+        <ul>
+            <li>Cuando se acceda como "Guest" en el menú lateral aparecerá el menú de "instructions" habilitado y el de "dashboard" deshabilitado (no aparecerá el de admin)</li>
+            <li>Cuando se acceda como "User" (habilitar este login) en el menú lateral aparecerá el menú de "instructions" y de "dashboard" habilitados y el de "admin" deshabilitado</li>
+            <li>Cuando se acceda como "Admin" (habilitar este login) en el menú lateral aparecerá el menú de "instructions", "dashboard" y "admin" habilitados</li>
+        </ul>
+    </div>
+    <div class="step">
+        <figure>
+            <span>5</span>
+        </figure>
+        <p>Crear la página de dashboard y sus componentes, dicha página tendrá lo siguiente:</p>
+        <ul>
+            <li>Un switch, selector o tabs para cambiar los tipos de datos de "product" (por defecto) a "company"</li>
+            <li>Un widget con un contador (el valor será dependiente de si se ha seleccionado "product" o "company") que tendrá una animación de conteo (donde empezará en 0 y subirán los números hasta llegar al que corresponda, que se explica a continuación)
+                <ul>
+                    <li>Cuando el valor del selector sea "product" se mostrará el precio total de todos los productos</li>
+                    <li>Cuando el valor del selector sea "company" se mostrará el número total de compañias</li>
+                </ul>
+            </li>
+            <li>Un widget con una gráfica de estilo doughnut que será realizado con el elemento de HTML canvas (este widget solo será visible si el usuario es admin)
+                <ul>
+                    <li>Cuando el valor del selector sea "product" se agruparán los valores de precios para mostrar el número total de productos que cumplan los siguientes rangos (0€ - 150€, 150€ - 300€, 300€ - 500€ y +500€)</li>
+                    <li>Cuando el valor del selector sea "company" se agruparán los valores por el "suffix" de las compañías</li>
+                </ul>
+            </li>
+            <li>Ambos widgets deberán contar con una leyenda que asigne el color a los valores</li>
+            <li>Una tabla con todos los valores posibles de los elementos "product" o "company" (según lo que se seleccione), que será posteriormente editable desde el menú de admin</li>
+            <li>Dicha tabla tendrá una columna adicional de acciones, con las acciones de borrar y editar que será visible solo para el admin</li>
+            <li>La tabla tendrá paginación y se podrá seleccionar el número de elementos de página (10, 20 y 50), y por defecto tendrá seleccionado 20 elementos por página (aunque se podrá cambiar posteriormente en el menú de admin)</li>
+        </ul>
+    </div>
+    <div class="step">
+        <figure>
+            <span>6</span>
+        </figure>
+        <ul>
+            <li>Programar la acción de borrado de un elemento a través de la acción de la tabla (solo visible para el usuario admin)</li>
+            <li>Programar la edición de un elemento a través de la acción de la tabla (solo visible para el usuario admin), esto se hará a través de un modal con un formulario con todos los campos posibles del elemento (independientemente de lo que tenga visible en la tabla) y con el id visible pero disabled para que no lo pueda editar</li>
+            <li>Todas las acciones de borrado y edición se harán de forma local (persistiendo los valores hasta que se haga logout)</li>
+        </ul>
+        <p class="notes">Se valorará si en vez de un modal es una ventana emergente lateral que ocupe casi la totalidad de la pantalla y al cerrarla (ya sea por guardar el formulario o clickando fuera de la misma) desaparezca con la animación contraria a la aparición</p>
+    </div>
+    <div class="step">
+        <figure>
+            <span>7</span>
+        </figure>
+        <p>Crear la página de admin y sus componentes, dicha página tendrá lo siguiente:</p>
+        <ul>
+            <li>Se podrá configurar el número inicial de la paginacion (cambiar del de 20 por defecto a 10 ó 50)</li>
+            <li>Se podrá configurar qué columnas salen visibles en la tabla por cada set de datos (Products y companies), teniendo en cuenta que al menos tendrá que tener una columna</li>
+            <li>Se podrá elegir la divisa en la que se mostrará los valores de precios (EUR o USD)
+                <ul>
+                    <li>Se tendrá que mostrar dicha divisa tanto en la tabla asi como en los widget (cuando corresponda)</li>
+                </ul>
+            </li>
+        </ul>
+        <p class="notes">Se dará total libertad para la creación de esta página tanto a nivel de estilos como de funcionalidad siempre que se cumplan los requisitos anteriores</p>
+    </div>
+</div>
+<div class="container">
+    <h1>Bonus points</h1>
+    <ul>
+        <li>Usar las nuevas caracteristicas de angular 18+ (signals, resource, etc) siempre que sea recomendable</li>
+        <li>Usar observables cuando sea recomendable</li>
+        <li>Se valorará estilo visual, animaciones y creatividad</li>
+        <li>Se valorará la creación de algún pipe para la modificación visual de datos</li>
+        <li>El uso de variables CSS será recomendable</li>
+    </ul>
+</div>
+<div class="container">
+    <h1>Ayuda visual</h1>
+    <figure>
+        <img src="/assets/images/dashboard-example.png" alt="Dashboard mockup" />
+        <img src="/assets/images/admin-example.png" alt="Admin mockup" />
+    </figure>
+    <p class="notes">Las imágenes son mockups orientativos, el diseño final deberá ser distinto al mostrado</p>
+</div>

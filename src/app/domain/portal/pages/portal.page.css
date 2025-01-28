@@ -1,0 +1,61 @@
+@charset "UTF-8";
+:host {
+  --aside-width: 180px;
+  --logo-height: 80px;
+}
+
+aside {
+  position: fixed;
+  top: 0;
+  left: 0;
+  height: 100vh;
+  width: var(--aside-width);
+  background-color: var(--color-primary);
+}
+aside figure {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: var(--logo-height);
+}
+aside figure img {
+  width: 80px;
+}
+aside nav {
+  display: flex;
+  flex-direction: column;
+  height: calc(100% - var(--logo-height));
+  width: 100%;
+}
+aside nav .bottom-container {
+  margin-top: auto;
+}
+aside nav button, aside nav a {
+  display: inline-block;
+  width: 100%;
+  color: var(--color-neutral-1);
+  background-color: var(--color-primary-alt);
+  padding: var(--spacing-s);
+  cursor: pointer;
+  text-decoration: none;
+  transition: background-color 0.3s;
+  border: none;
+}
+aside nav button:active, aside nav a:active {
+  background-color: var(--color-secondary);
+}
+
+.disabled {
+  pointer-events: none; /* Evita la interacción */
+  opacity: 0.5; /* Aparece visualmente deshabilitado */
+  cursor: not-allowed; /* Cambia el cursor al pasar por encima */
+}
+
+main {
+  margin-left: var(--aside-width);
+  width: calc(100% - var(--aside-width));
+}
+main .main-container {
+  position: relative;
+  padding: var(--spacing-l);
+}/*# sourceMappingURL=portal.page.css.map */

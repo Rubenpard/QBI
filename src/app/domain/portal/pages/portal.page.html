@@ -1,0 +1,29 @@
+<aside>
+    <figure>
+        <img src="/assets/images/logoQBi-negative.png" alt="Logo">
+    </figure>
+    <nav>
+        <div class="top-container">
+            <!-- Siempre visible -->
+            <button routerLink="/portal/instructions" *ngIf="isLoggedIn">Instructions</button>
+            <!-- Visible para User y Admin -->
+            <button 
+                routerLink="/portal/dashboard" 
+                [class.disabled]="userRole === 'Guest'" 
+                [disabled]="userRole === 'Guest'" 
+                *ngIf="userRole === 'User' || userRole === 'Admin' || userRole === 'Guest'">
+                Dashboard
+            </button>
+            <!-- Visible solo para Admin -->
+            <button routerLink="/portal/admin" *ngIf="userRole === 'Admin'">Admin</button>
+        </div>
+        <div class="bottom-container">
+            <a routerLink="/login">Logout</a>
+        </div>
+    </nav>
+</aside>
+<main>
+    <div class="main-container">
+        <router-outlet></router-outlet>
+    </div>
+</main>
